@@ -1,0 +1,162 @@
+  <!DOCTYPE html>
+  <html lang="tw">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta content="123">
+      <title>張仁偉</title>
+      <link rel="stylesheet" href="css/style.css">
+     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+      <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                var i = 0;
+
+                var clone = $(".banner .img li").first().clone();//克隆第一张图片
+                $(".banner .img").append(clone);//复制到列表最后
+                var size = $(".banner .img li").size();
+               
+
+                for (var j = 0; j < size-1; j++) {
+                    $(".banner .num").append("<li></li>");
+                }
+
+                $(".banner .num li").first().addClass("on");
+
+                /*自动轮播*/
+
+                var t = setInterval(function () { i++; move();},2000);
+
+                /*鼠标悬停事件*/
+
+                $(".banner").hover(function () {
+                    clearInterval(t);//鼠标悬停时清除定时器
+                }, function () {
+                    t = setInterval(function () { i++; move(); }, 2000); //鼠标移出时清除定时器
+                });
+
+
+
+
+                /*鼠标滑入原点事件*/
+
+                $(".banner .num li").hover(function () {
+
+                    var index = $(this).index();//获取当前索引值
+                    i = index;
+                    $(".banner .img").stop().animate({ left: -index * 500 }, 500);
+                    $(this).addClass("on").siblings().removeClass("on");
+                });
+
+
+
+                /*向左按钮*/
+                $(".banner .btn_l").click(function () {
+                    i++;
+                    move();
+                })
+
+                
+                /*向右按钮*/
+                $(".banner .btn_r").click(function () {
+                    i--;
+                    move();
+                })
+
+                /*移动事件*/
+                function move() {
+                    if (i == size) {
+                        $(".banner .img").css({ left: 0 });
+                        i = 1;
+                    }
+                    if (i == -1) {
+                        $(".banner .img").css({ left: -(size - 1) * 500 });
+                        i = size - 2;
+                    }
+                    $(".banner .img").stop().animate({ left: -i * 500 }, 500);
+
+                    if (i == size - 1) {
+                        $(".banner .num li").eq(0).addClass("on").siblings().removeClass("on");
+                    } else {
+                        $(".banner .num li").eq(i).addClass("on").siblings().removeClass("on");
+                    }
+                }
+            });
+
+
+        </script>
+ </head>
+ <body>
+    <header>
+      <div class="header_inner">
+       <img class="img1" src="./images/大頭照.jpg" alt="大頭照" />
+      <div class="header_info">
+        <h4 class="header_span1">張仁偉</h4>
+        <span class="header_span2">前端之路 <b style="color: red">不</b><b style="color: yellow">由</b>分說</span>
+        </div>
+    </div>
+  </header>
+  <nav>
+    <ul>
+      <a href="#"><li>首頁</li></a>
+      <a href="about.html"><li>蘭嶼之旅</li></a>
+      <a href="#"><li>婚攝作品</li></a>
+    </ul>
+  </nav>
+  <main>
+    <content>
+      <div class="content1">
+        <h1>個人簡介</h1>
+        <h3>1985年04月18日(牡羊座)</h3>
+        <p>從小在屏東縣枋寮鄉長大，高中畢業就到外地工作，住過基隆，桃園，台中，台東，新竹，其中新竹是住最久的縣市，在那邊生活了六年，後在民國一百年時搬回來屏東。</p><br>
+        <h3>興趣</h3>
+        <p>高中開始喜歡學習新事物，會電吉他也組過樂團，後來對攝影有興趣就一頭栽進去拍到現在已經七年了，偶爾會接一些攝影的工作，個性外向，熱愛騎檔車，喜歡到處旅行拍照，現在以前端工程師為目標努力中。</p><br>
+        <div class="even">
+         <div>
+        <h3>經歷</h3>
+        <ul>
+          <li>前鼎光電(6年)</li>
+          <li>7-11(3年)</li>
+          <li>國光客運(2年)</li>
+          <a href="https://www.facebook.com/%E7%8A%AC%E8%B6%B3%E7%87%92%E9%9B%9E%E8%9B%8B%E7%B3%95-1593707563993314/" target="_bland"><li>犬足燒雞蛋糕(自行創業)</li></a>
+        </ul>
+        </div>
+        <div class="even1">
+          <h3>學歷</h3>
+        <ul>
+          <li>僑德國小</li>
+          <li>枋寮國中</li>
+          <li>國立屏東高級工業職業學校</li>
+          <li>高雄市立空中大學資訊管理(就讀中)</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+    </content>
+    <section>
+      <a href="https://owlinn2016.weebly.com/about.html" target="_bland"><p class="sss12">台南窩喔民宿</p></a>
+      <div class="banner">
+            <ul class="img">
+                <li><img src="images/1.jpg" alt=""/></li>
+                <li><img src="images/2.jpg" alt="" /></li>
+                <li><img src="images/3.jpg" alt="" /></li>
+                <li><img src="images/4.jpg" alt="" /></li>
+                <li><img src="images/5.jpg" alt="" /></li>
+            </ul>
+            <ul class="num">
+                
+            </ul>
+            <div class="btn btn_l">&lt;</div>
+            <div class="btn btn_r">&gt;</div>
+  </div>
+    
+    </section>
+  </main> 
+  <footer>
+    <span>@Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, vitae.</span>
+  </footer>
+      
+ </body>
+ </html>
